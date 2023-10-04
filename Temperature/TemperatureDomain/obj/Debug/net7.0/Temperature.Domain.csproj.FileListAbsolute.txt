@@ -1,0 +1,11 @@
+C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\bin\Debug\net7.0\Temperature.Domain.deps.json
+C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\bin\Debug\net7.0\Temperature.Domain.dll
+C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\bin\Debug\net7.0\Temperature.Domain.pdb
+C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\obj\Debug\net7.0\Temperature.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\obj\Debug\net7.0\Temperature.Domain.AssemblyInfoInputs.cache
+C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\obj\Debug\net7.0\Temperature.Domain.AssemblyInfo.cs
+C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\obj\Debug\net7.0\Temperature.Domain.csproj.CoreCompileInputs.cache
+C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\obj\Debug\net7.0\Temperature.Domain.dll
+C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\obj\Debug\net7.0\refint\Temperature.Domain.dll
+C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\obj\Debug\net7.0\Temperature.Domain.pdb
+C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\obj\Debug\net7.0\ref\Temperature.Domain.dll
