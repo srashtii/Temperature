@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TemperatureData;
 
@@ -11,9 +12,11 @@ using TemperatureData;
 namespace TemperatureData.Migrations
 {
     [DbContext(typeof(TemperatureContext))]
-    partial class TemperatureContextModelSnapshot : ModelSnapshot
+    [Migration("20231004233447_addsensordefaults")]
+    partial class addsensordefaults
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -22,11 +22,11 @@ namespace TemperatureInfrastructure
             _temperatureSensorComponentService = defaultTemperatureSensorService ?? throw new ArgumentNullException(nameof(defaultTemperatureSensorService));
         }
 
-        public async Task<double> GetTemperature()
+        public async Task<double> GetTemperatureAsync()
         {
             try
             {
-                var temp = _temperatureSensorComponentService.GetTemperature();
+                var temp =  _temperatureSensorComponentService.GetTemperature();
                 //convert to degree celcius
                 temp = (temp - 32) * 5 / 9;
                 await AddTemperatureAsync(temp);

@@ -7,15 +7,35 @@ namespace Temperature.API.Services
     public class DefaultTemperatureSensorService : ITemperatureSensorService
     {
         private readonly ITemperatureRepository _temperatureRepository;
-
-        public DefaultTemperatureSensorService(ITemperatureRepository temperatureRepository)
+        private readonly ISensorLimitRepository _sensorLimitRepository;
+        private const string hot = "hot";
+        private const string cold = "cold";
+        private const string warm = "warm";
+        public DefaultTemperatureSensorService(ITemperatureRepository temperatureRepository, ISensorLimitRepository sensorLimitRepository)
         {
             _temperatureRepository = temperatureRepository ?? throw new ArgumentNullException(nameof(temperatureRepository));
+            _sensorLimitRepository = sensorLimitRepository ?? throw new ArgumentNullException(nameof(sensorLimitRepository));
 
         }
-        public Task<double> GetTemperature()
+
+        public async Task<string> GetSensorStateAsync(double temp)
         {
-            return _temperatureRepository.GetTemperature();
+            var sensorLimit = await _sensorLimitRepository.GetSensorLimitAsync();
+            if (temp >= sensorLimit.Hot)
+            {
+                return hot;
+            }
+            else if (temp < sensorLimit.Cold)
+            {
+                return cold;
+            }
+            else return warm;
+
+        }
+
+        public async Task<double> GetTemperature()
+        {
+            return await _temperatureRepository.GetTemperatureAsync();
         }
 
         public async Task<IEnumerable<TemperatureRecord>> GetTemperatureHistory()

@@ -5,7 +5,7 @@ namespace Temperature.API.Interfaces
     public interface ITemperatureSensorService
     {
         public Task<double> GetTemperature();
-        //public SensorState GetSensorState();
+        public Task<string> GetSensorStateAsync(double temp);
         public Task<IEnumerable<TemperatureRecord>> GetTemperatureHistory();
         public void SetSensorLimits();
     }

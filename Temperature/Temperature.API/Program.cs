@@ -19,6 +19,7 @@ op.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"))
 .EnableSensitiveDataLogging());
 builder.Services.AddScoped<ITemperatureSensorService, DefaultTemperatureSensorService>();
 builder.Services.AddScoped<ITemperatureRepository, DefaultTemperatureRepository>();
+builder.Services.AddScoped<ISensorLimitRepository, DefaultSensorLimitRepository>();
 builder.Services.AddScoped<ITemperatureSensorComponent, DefaultTemperatureSensorComponentService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

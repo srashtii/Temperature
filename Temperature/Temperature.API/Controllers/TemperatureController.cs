@@ -36,12 +36,13 @@ namespace Temperature.API.Controllers
                 <TemperatureRecordDto>>(temperature));
         }
         [HttpGet("getSensorState")]
-        public async Task<ActionResult<IEnumerable<TemperatureRecordDto>>> GetTemperatureHistory()
+        public async Task<ActionResult<SensorStateDto>> GetTemperatureState()
         {
 
-            var temperature = await _temperatureSensorService.GetTemperatureHistory();
-
-            return Ok(_mapper.Map<IEnumerable<TemperatureRecordDto>>(temperature));
-        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+            var temperature = await _temperatureSensorService.GetTemperature();
+            var state = await _temperatureSensorService.GetSensorStateAsync(temperature);
+            return Ok(new SensorStateDto { State = state, Temperature = temperature });
+        }
     }
 }
+

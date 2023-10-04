@@ -7,8 +7,9 @@ using TemperatureDomain;
 
 namespace TemperatureInfrastructure
 {
-    internal interface ISensorLimitRepository
+    public interface ISensorLimitRepository
     {
         public Task AddSensorLimit(SensorLimit sensorLimit);
+        public Task<SensorLimit> GetSensorLimitAsync();
     }
 }
