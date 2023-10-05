@@ -1,4 +1,5 @@
 ﻿using Temperature.API.Interfaces;
+using Temperature.API.Models;
 using TemperatureDomain;
 using TemperatureInfrastructure;
 
@@ -43,9 +44,9 @@ namespace Temperature.API.Services
             return await _temperatureRepository.GetTemperatureRecords();
         }
 
-        public void SetSensorLimits()
+        public async Task SetSensorLimits(SensorLimit sensorLimit)
         {
-            throw new NotImplementedException();
+            await _sensorLimitRepository.AddSensorLimit(sensorLimit);
         }
     }
 }

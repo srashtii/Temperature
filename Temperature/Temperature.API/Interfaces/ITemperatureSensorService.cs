@@ -1,4 +1,5 @@
-﻿using TemperatureDomain;
+﻿using Temperature.API.Models;
+using TemperatureDomain;
 
 namespace Temperature.API.Interfaces
 {
@@ -7,6 +8,6 @@ namespace Temperature.API.Interfaces
         public Task<double> GetTemperature();
         public Task<string> GetSensorStateAsync(double temp);
         public Task<IEnumerable<TemperatureRecord>> GetTemperatureHistory();
-        public void SetSensorLimits();
+        public Task SetSensorLimits(SensorLimit sensorLimit);
     }
 }

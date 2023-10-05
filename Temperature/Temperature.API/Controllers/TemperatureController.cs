@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Temperature.API.Interfaces;
 using Temperature.API.Models;
+using TemperatureDomain;
 
 namespace Temperature.API.Controllers
 {
@@ -42,6 +43,13 @@ namespace Temperature.API.Controllers
             var temperature = await _temperatureSensorService.GetTemperature();
             var state = await _temperatureSensorService.GetSensorStateAsync(temperature);
             return Ok(new SensorStateDto { State = state, Temperature = temperature });
+        }
+        [HttpPost("setSensorLimit")]
+        public async Task<ActionResult<SensorStateDto>> SetSensorLimit(SensorLimitDto sensorLimit)
+        {
+
+            await _temperatureSensorService.SetSensorLimits(_mapper.Map<SensorLimit>(sensorLimit));
+            return Ok();
         }
     }
 }

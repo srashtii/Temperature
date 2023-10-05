@@ -18,9 +18,10 @@ namespace TemperatureInfrastructure
         {
             _temperatureContext = temperatureContext ?? throw new ArgumentNullException(nameof(temperatureContext));
         }
-        public Task AddSensorLimit(SensorLimit sensorLimit)
+        public async Task AddSensorLimit(SensorLimit sensorLimit)
         {
-            throw new NotImplementedException();
+            await _temperatureContext.AddAsync(sensorLimit);
+            await _temperatureContext.SaveChangesAsync();
         }
 
         public async Task<SensorLimit> GetSensorLimitAsync()
