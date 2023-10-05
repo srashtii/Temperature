@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemperatureData", "Temperat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemperatureInfrastructure", "TemperatureInfrastructure\TemperatureInfrastructure.csproj", "{DB019B97-4167-4CE6-9772-FBD499BE2B4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemperatureTests", "TemperatureTests\TemperatureTests.csproj", "{83F24387-9270-4974-9DA2-F3CF4633BBF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{DB019B97-4167-4CE6-9772-FBD499BE2B4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB019B97-4167-4CE6-9772-FBD499BE2B4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB019B97-4167-4CE6-9772-FBD499BE2B4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83F24387-9270-4974-9DA2-F3CF4633BBF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83F24387-9270-4974-9DA2-F3CF4633BBF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83F24387-9270-4974-9DA2-F3CF4633BBF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83F24387-9270-4974-9DA2-F3CF4633BBF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
