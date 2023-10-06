@@ -61,8 +61,13 @@ namespace Temperature.API.Controllers
         {
             try
             {
-                await _temperatureSensorService.SetSensorLimits(_mapper.Map<SensorLimit>(sensorLimit));
-                return Ok();
+                if (ModelState.IsValid)
+                {
+
+                    await _temperatureSensorService.SetSensorLimits(_mapper.Map<SensorLimit>(sensorLimit));
+                    return Ok();
+                }
+                return BadRequest();
             }
             catch (Exception ex)
             {
