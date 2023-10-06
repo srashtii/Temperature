@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Temperature.API.Interfaces;
 using Temperature.API.Models;
-using TemperatureDomain;
+using Temperature.Domain;
 
 namespace Temperature.API.Controllers
 {
@@ -12,67 +12,51 @@ namespace Temperature.API.Controllers
     {
         private readonly ITemperatureSensorService _temperatureSensorService;
         private readonly IMapper _mapper;
+        private readonly Sensor _sensor;
+        private readonly TemperatureRule _temperatureRule;
 
-        public TemperatureController(ITemperatureSensorService temperatureSensorService, IMapper mapper)
+        public TemperatureController(ITemperatureSensorService temperatureSensorService, IMapper mapper, Sensor sensor, TemperatureRule temperatureRule)
         {
             _temperatureSensorService = temperatureSensorService ?? throw new ArgumentNullException(nameof(temperatureSensorService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _sensor = sensor ?? throw new ArgumentNullException(nameof(sensor));
+            _temperatureRule = _temperatureRule ?? throw new ArgumentNullException(nameof(temperatureRule));
         }
         [HttpGet]
         public async Task<IActionResult> GetTemperature()
         {
-            try
-            {
-                var temperature = await _temperatureSensorService.GetTemperature();
-
-                return Ok(temperature);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Probelm whiele rerieving the temperature from the sensor component" + ex.Message);
-            }
+            return Ok(await _temperatureSensorService.GetTemperature(_sensor));
         }
         [HttpGet("get-history")]
 
-        public async Task<ActionResult<IEnumerable<TemperatureRecordDto>>> GetTemperatureHistory()
+        public async Task<ActionResult<IEnumerable<TemperatureState>>> GetTemperatureHistory()
         {
-            try
-            {
-                var temperature = await _temperatureSensorService.GetTemperatureHistory();
+            return Ok(await _temperatureSensorService.GetTemperatureHistory());
 
-                return Ok(_mapper.Map<IEnumerable
-                    <TemperatureRecordDto>>(temperature));
-            }
-            catch
-            {
-                return StatusCode(500, Enumerable.Empty<TemperatureRecordDto>());
-            }
         }
         [HttpGet("sensor-state")]
-        public async Task<ActionResult<SensorStateDto>> GetTemperatureState()
+        public IActionResult GetTemperatureState()
         {
 
-            var temperature = await _temperatureSensorService.GetTemperature();
-            var state = await _temperatureSensorService.GetSensorStateAsync(temperature);
-            return Ok(new SensorStateDto { State = state, Temperature = temperature });
+            return Ok(_sensor.GetCurrentState());
+            throw new NotImplementedException();
+
         }
-        [HttpPost("sensor-limit")]
-        public async Task<ActionResult<SensorStateDto>> SetSensorLimit(SensorLimitDto sensorLimit)
+        [HttpPost("sensor-max-limit")]
+        public Task<ActionResult> SetSensorLimit(double maxLimit)
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
+            var rule = new HotTemperatureRule(maxLimit);
+            _sensor.ChangeRule(rule);
+            throw new NotImplementedException();
 
-                    await _temperatureSensorService.SetSensorLimits(_mapper.Map<SensorLimit>(sensorLimit));
-                    return Ok();
-                }
-                return BadRequest();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+        }
+        [HttpPost("sensor-min-limit")]
+        public Task<ActionResult> SetSensorMinLimit(double minLimit)
+        {
+            var rule = new HotTemperatureRule(minLimit);
+            _sensor.ChangeRule(rule);
+            throw new NotImplementedException();
+
         }
     }
 }

@@ -100,7 +100,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Srashti\\TemperatureSensor\\Temperature\\TemperatureSensor\\TemperatureSensor.csproj": {
+                "projectPath": "C:\\Srashti\\TemperatureSensor\\Temperature\\TemperatureSensor\\TemperatureSensor.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

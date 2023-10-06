@@ -1,52 +1,52 @@
 ﻿using Temperature.API.Interfaces;
 using Temperature.API.Models;
-using TemperatureDomain;
+using Temperature.Domain;
 using TemperatureInfrastructure;
 
 namespace Temperature.API.Services
 {
     public class DefaultTemperatureSensorService : ITemperatureSensorService
     {
-        private readonly ITemperatureRepository _temperatureRepository;
+        private readonly SensorRepository _sensorRepository;
         private readonly ISensorLimitRepository _sensorLimitRepository;
-        private const string hot = "hot";
-        private const string cold = "cold";
-        private const string warm = "warm";
-        public DefaultTemperatureSensorService(ITemperatureRepository temperatureRepository, ISensorLimitRepository sensorLimitRepository)
+      
+        public DefaultTemperatureSensorService(SensorRepository sensorRepository)
         {
-            _temperatureRepository = temperatureRepository ?? throw new ArgumentNullException(nameof(temperatureRepository));
-            _sensorLimitRepository = sensorLimitRepository ?? throw new ArgumentNullException(nameof(sensorLimitRepository));
 
         }
 
         public async Task<string> GetSensorStateAsync(double temp)
         {
-            var sensorLimit = await _sensorLimitRepository.GetSensorLimitAsync();
-            if (temp >= sensorLimit.Hot)
-            {
-                return hot;
-            }
-            else if (temp < sensorLimit.Cold)
-            {
-                return cold;
-            }
-            else return warm;
+            //var sensorLimit = await _sensorLimitRepository.GetSensorLimitAsync();
+            //if (temp >= sensorLimit.Hot)
+            //{
+            //    return hot;
+            //}
+            //else if (temp < sensorLimit.Cold)
+            //{
+            //    return cold;
+            //}
+            //else return warm;
+            throw new NotImplementedException();
+
 
         }
 
-        public async Task<double> GetTemperature()
+        public async Task<double> GetTemperature(Sensor sensor)
         {
-            return await _temperatureRepository.GetTemperatureAsync();
+            var temperature = sensor.GetTemperature();
+            await _sensorRepository.SaveAsync(sensor);
+            return temperature;
         }
 
-        public async Task<IEnumerable<TemperatureRecord>> GetTemperatureHistory()
+        public async Task<IEnumerable<TemperatureState>> GetTemperatureHistory()
         {
-            return await _temperatureRepository.GetTemperatureRecords();
+            return await _sensorRepository.GetHistory();
         }
 
-        public async Task SetSensorLimits(SensorLimit sensorLimit)
-        {
-            await _sensorLimitRepository.AddSensorLimit(sensorLimit);
-        }
+        //public async Task SetSensorLimits(SensorLimit sensorLimit)
+        //{
+        //    await _sensorLimitRepository.AddSensorLimit(sensorLimit);
+        //}
     }
 }

@@ -9,3 +9,7 @@ C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\obj\Debug\net7.0\Temp
 C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\obj\Debug\net7.0\refint\Temperature.Domain.dll
 C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\obj\Debug\net7.0\Temperature.Domain.pdb
 C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\obj\Debug\net7.0\ref\Temperature.Domain.dll
+C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\bin\Debug\net7.0\TemperatureSensor.dll
+C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\bin\Debug\net7.0\TemperatureSensor.pdb
+C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\obj\Debug\net7.0\Temperature.Domain.csproj.AssemblyReference.cache
+C:\Srashti\TemperatureSensor\Temperature\TemperatureDomain\obj\Debug\net7.0\Temperature.Domain.csproj.CopyComplete

@@ -1,5 +1,4 @@
-﻿using TemperatureDomain;
-
+﻿
 namespace TemperatureInfrastructure
 {
     public interface ITemperatureRepository
@@ -7,7 +6,7 @@ namespace TemperatureInfrastructure
     {
         public Task<double> GetTemperatureAsync();
         public Task AddTemperatureAsync(double temperature);
-        public Task<IEnumerable<TemperatureRecord>> GetTemperatureRecords();
+        //public Task<IEnumerable<TemperatureRecord>> GetTemperatureRecords();
     }
 
 }

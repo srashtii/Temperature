@@ -13,3 +13,5 @@ C:\Srashti\TemperatureSensor\Temperature\TemperatureData\obj\Debug\net7.0\Temper
 C:\Srashti\TemperatureSensor\Temperature\TemperatureData\obj\Debug\net7.0\refint\TemperatureData.dll
 C:\Srashti\TemperatureSensor\Temperature\TemperatureData\obj\Debug\net7.0\TemperatureData.pdb
 C:\Srashti\TemperatureSensor\Temperature\TemperatureData\obj\Debug\net7.0\ref\TemperatureData.dll
+C:\Srashti\TemperatureSensor\Temperature\TemperatureData\bin\Debug\net7.0\TemperatureSensor.dll
+C:\Srashti\TemperatureSensor\Temperature\TemperatureData\bin\Debug\net7.0\TemperatureSensor.pdb

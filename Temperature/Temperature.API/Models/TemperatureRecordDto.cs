@@ -1,4 +1,4 @@
-﻿using TemperatureDomain;
+﻿
 
 namespace Temperature.API.Models
 {

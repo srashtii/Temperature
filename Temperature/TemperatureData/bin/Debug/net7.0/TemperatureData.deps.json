@@ -554,8 +554,16 @@
         }
       },
       "Temperature.Domain/1.0.0": {
+        "dependencies": {
+          "TemperatureSensor": "1.0.0"
+        },
         "runtime": {
           "Temperature.Domain.dll": {}
+        }
+      },
+      "TemperatureSensor/1.0.0": {
+        "runtime": {
+          "TemperatureSensor.dll": {}
         }
       }
     }
@@ -945,6 +953,11 @@
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
     },
     "Temperature.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TemperatureSensor/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

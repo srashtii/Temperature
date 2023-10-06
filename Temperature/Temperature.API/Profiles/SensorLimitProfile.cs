@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Temperature.API.Models;
-using TemperatureDomain;
+
 
 namespace Temperature.API.Profiles
 {
@@ -8,7 +8,9 @@ namespace Temperature.API.Profiles
     {
         public SensorLimitProfile()
         {
-            CreateMap<SensorLimitDto, SensorLimit>();
+            //CreateMap<SensorLimitDto, SensorLimit>();
+            throw new NotImplementedException();
+
 
         }
     }

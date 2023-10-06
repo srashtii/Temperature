@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {}
+    "net7.0": {
+      "TemperatureSensor/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/TemperatureSensor.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TemperatureSensor.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "TemperatureSensor/1.0.0": {
+      "type": "project",
+      "path": "../TemperatureSensor/TemperatureSensor.csproj",
+      "msbuildProject": "../TemperatureSensor/TemperatureSensor.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net7.0": []
+    "net7.0": [
+      "TemperatureSensor >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\pierr\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Srashti\\TemperatureSensor\\Temperature\\TemperatureSensor\\TemperatureSensor.csproj": {
+              "projectPath": "C:\\Srashti\\TemperatureSensor\\Temperature\\TemperatureSensor\\TemperatureSensor.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

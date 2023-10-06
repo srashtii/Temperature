@@ -964,11 +964,24 @@
       "Temperature.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "TemperatureSensor": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/Temperature.Domain.dll": {}
         },
         "runtime": {
           "bin/placeholder/Temperature.Domain.dll": {}
+        }
+      },
+      "TemperatureSensor/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/TemperatureSensor.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TemperatureSensor.dll": {}
         }
       }
     }
@@ -2624,6 +2637,11 @@
       "type": "project",
       "path": "../TemperatureDomain/Temperature.Domain.csproj",
       "msbuildProject": "../TemperatureDomain/Temperature.Domain.csproj"
+    },
+    "TemperatureSensor/1.0.0": {
+      "type": "project",
+      "path": "../TemperatureSensor/TemperatureSensor.csproj",
+      "msbuildProject": "../TemperatureSensor/TemperatureSensor.csproj"
     }
   },
   "projectFileDependencyGroups": {

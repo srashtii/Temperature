@@ -1,56 +1,38 @@
-using Moq;
-using Temperature.API.Services;
-using TemperatureDomain;
 
-using TemperatureInfrastructure;
+using NSubstitute;
+using Temperature.Domain;
+using TemperatureSensor;
+using Xunit;
 
 namespace TemperatureTests
 {
-    [TestFixture]
+
     public class DefaultTemperatureSensorServiceTests
     {
-        [Test]
-        public async Task GetSensorStateAsync_ReturnsHot()
+        [Fact]
+        public void GetSensorStateAsync_ReturnsHot()
         {
-            // Arrange
-            var mockTemperatureRepository = new Mock<ITemperatureRepository>();
-            var mockSensorLimitRepository = new Mock<ISensorLimitRepository>();
-
-            var sensorLimit = new SensorLimit { Hot = 35, Cold = 22, Warm = 30 };
-            mockSensorLimitRepository.Setup(repo => repo.GetSensorLimitAsync()).ReturnsAsync(sensorLimit);
-
-            var temperature = 36; // Above hot threshold
-
-            var temperatureService = new DefaultTemperatureSensorService(mockTemperatureRepository.Object, mockSensorLimitRepository.Object);
-
-            // Act
-            var result = await temperatureService.GetSensorStateAsync(temperature);
-
-            // Assert
-            Assert.AreEqual("hot", result);
+            var mockTemperatureSensoreComponent = NSubstitute.Substitute.For<ITemperatureSensorComponent>();
+            mockTemperatureSensoreComponent.GetTemperature().Returns(50);
+            var rules = new List<TemperatureRule> { new HotTemperatureRule(35), new ColdTemperatureRule(22), new WarmTemperatureRule(22, 35) };
+            Sensor sensor = new Sensor(mockTemperatureSensoreComponent, rules);
+            sensor.GetTemperature();
+            Assert.True(sensor.GetCurrentState() is TemperatureHot);
+            var hotRule = rules.First(x => x.GetType() == typeof(HotTemperatureRule));
+            rules.Remove(hotRule);
+            rules.Add(new HotTemperatureRule(60));
+            Assert.Throws<ArgumentOutOfRangeException>(() => sensor.GetTemperature());
         }
-
-        [Test]
-        public async Task GetSensorStateAsync_ReturnsCold()
+        [Fact]
+        public void GetCurrentStateOfTemperature()
         {
-            // Arrange
-            var mockTemperatureRepository = new Mock<ITemperatureRepository>();
-            var mockSensorLimitRepository = new Mock<ISensorLimitRepository>();
-
-            var sensorLimit = new SensorLimit { Hot = 35, Cold = 22, Warm = 30 };
-            mockSensorLimitRepository.Setup(repo => repo.GetSensorLimitAsync()).ReturnsAsync(sensorLimit);
-
-            var temperature = 20; // Below cold threshold
-
-            var temperatureService = new DefaultTemperatureSensorService(mockTemperatureRepository.Object, mockSensorLimitRepository.Object);
-
-            // Act
-            var result = await temperatureService.GetSensorStateAsync(temperature);
-
-            // Assert
-            Assert.AreEqual("cold", result);
+            var mockTemperatureSensoreComponent = NSubstitute.Substitute.For<ITemperatureSensorComponent>();
+            mockTemperatureSensoreComponent.GetTemperature().Returns(50);
+            var rules = new List<TemperatureRule> { new HotTemperatureRule(35), new ColdTemperatureRule(22), new WarmTemperatureRule(22, 35) };
+            Sensor sensor = new Sensor(mockTemperatureSensoreComponent, rules);
+            sensor.GetTemperature();
+            Assert.True(sensor.GetCurrentState().MeasuredTemperature == 50);
         }
-
         // Additional tests are remaining to be added here
 
     }
