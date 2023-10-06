@@ -51,7 +51,7 @@ namespace TemperatureTests
             Assert.AreEqual("cold", result);
         }
 
-        // Additional tests for other methods can be added here...
+        // Additional tests are remaining to be added here
 
     }
 }

@@ -21,22 +21,34 @@ namespace Temperature.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetTemperature()
         {
+            try
+            {
+                var temperature = await _temperatureSensorService.GetTemperature();
 
-            var temperature = await _temperatureSensorService.GetTemperature();
-
-            return Ok(temperature);
+                return Ok(temperature);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Probelm whiele rerieving the temperature from the sensor component" + ex.Message);
+            }
         }
-        [HttpGet("geHistory")]
+        [HttpGet("get-history")]
 
         public async Task<ActionResult<IEnumerable<TemperatureRecordDto>>> GetTemperatureHistory()
         {
+            try
+            {
+                var temperature = await _temperatureSensorService.GetTemperatureHistory();
 
-            var temperature = await _temperatureSensorService.GetTemperatureHistory();
-
-            return Ok(_mapper.Map<IEnumerable
-                <TemperatureRecordDto>>(temperature));
+                return Ok(_mapper.Map<IEnumerable
+                    <TemperatureRecordDto>>(temperature));
+            }
+            catch
+            {
+                return StatusCode(500, Enumerable.Empty<TemperatureRecordDto>());
+            }
         }
-        [HttpGet("getSensorState")]
+        [HttpGet("sensor-state")]
         public async Task<ActionResult<SensorStateDto>> GetTemperatureState()
         {
 
@@ -44,12 +56,18 @@ namespace Temperature.API.Controllers
             var state = await _temperatureSensorService.GetSensorStateAsync(temperature);
             return Ok(new SensorStateDto { State = state, Temperature = temperature });
         }
-        [HttpPost("setSensorLimit")]
+        [HttpPost("sensor-limit")]
         public async Task<ActionResult<SensorStateDto>> SetSensorLimit(SensorLimitDto sensorLimit)
         {
-
-            await _temperatureSensorService.SetSensorLimits(_mapper.Map<SensorLimit>(sensorLimit));
-            return Ok();
+            try
+            {
+                await _temperatureSensorService.SetSensorLimits(_mapper.Map<SensorLimit>(sensorLimit));
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }
