@@ -39,24 +39,29 @@ namespace Temperature.API.Controllers
         {
 
             return Ok(_sensor.GetCurrentState());
-            throw new NotImplementedException();
 
         }
         [HttpPost("sensor-max-limit")]
-        public Task<ActionResult> SetSensorLimit(double maxLimit)
+        public IActionResult SetSensorLimit(double maxLimit)
         {
             var rule = new HotTemperatureRule(maxLimit);
             _sensor.ChangeRule(rule);
-            throw new NotImplementedException();
+            return NoContent();
 
         }
         [HttpPost("sensor-min-limit")]
-        public Task<ActionResult> SetSensorMinLimit(double minLimit)
+        public IActionResult SetSensorMinLimit(double minLimit)
         {
-            var rule = new HotTemperatureRule(minLimit);
+            var rule = new ColdTemperatureRule(minLimit);
             _sensor.ChangeRule(rule);
-            throw new NotImplementedException();
-
+            return NoContent();
+        }
+        [HttpPost("sensor-war-limit")]
+        public IActionResult SetSensorWarmLimit(double minLimit, double maxLimit)
+        {
+            var rule = new WarmTemperatureRule(minLimit, maxLimit);
+            _sensor.ChangeRule(rule);
+            return NoContent();
         }
     }
 }
